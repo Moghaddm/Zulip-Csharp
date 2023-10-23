@@ -2,9 +2,11 @@ using Newtonsoft.Json;
 using System;
 using System.Runtime.Serialization;
 
-namespace ZulipAPI.Messages {
+namespace ZulipAPI.Messages
+{
 
-    public class MessageBase {
+    public class MessageBase
+    {
 
         public ulong Id { get; set; }
         public string Subject { get; set; }
@@ -17,8 +19,8 @@ namespace ZulipAPI.Messages {
         public EditHistory[] EditHistory { get; set; }
         public string Type { get; set; }
 
-        public  ulong TimeStamp { get; set; }
-        public DateTime TimeStampUnix { get { return UnixEpoch.Epoch.AddSeconds(TimeStamp);  } }
+        public ulong TimeStamp { get; set; }
+        public DateTime TimeStampUnix { get => UnixEpoch.Epoch.AddSeconds(TimeStamp); }
         public string SenderRealmStr { get; set; }
         public uint RecipientID { get; set; }
         public bool IsMeMessage { get; set; }
@@ -33,9 +35,7 @@ namespace ZulipAPI.Messages {
         //[JsonConverter(typeof(DisplayRecipientJsonConverter))]
         public DisplayRecipient[] DisplayRecipient { get; set; }
 
-        public override string ToString() {
-            return $"{Id} {SenderEmail} {Subject}";
-        }
-
+        public override string ToString()
+            => $"{Id} {SenderEmail} {Subject}";
     }
 }

@@ -1,9 +1,10 @@
 using Newtonsoft.Json;
 
-namespace ZulipAPI {
+namespace ZulipAPI
+{
 
-    public class User {
-
+    public class User
+    {
         public uint UserID { get; set; }
         public string FullName { get; set; }
         public bool IsAdmin { get; set; }
@@ -18,7 +19,8 @@ namespace ZulipAPI {
         public string Password { get; }
         public string Shortname { get; }
 
-        public User() {
+        public User()
+        {
 
         }
 
@@ -29,7 +31,8 @@ namespace ZulipAPI {
         /// <param name="password"></param>
         /// <param name="shortname"></param>
         /// <param name="fullName"></param>
-        public User(string email, string password, string shortname, string fullName) {
+        public User(string email, string password, string shortname, string fullName)
+        {
             Email = email;
             FullName = fullName;
             Password = password;
@@ -43,9 +46,7 @@ namespace ZulipAPI {
         //    this.InviteOnly = InviteOnly;
         //}
 
-        public override string ToString() {
-            return $"{UserID} {FullName}";
-        }
-
+        public override string ToString()
+            => $"{UserID} {FullName}";
     }
 }

@@ -10,21 +10,20 @@ namespace ZulipAPI
         public ResponseBase ZulipServerResponse { get; private set; }
         public new string Message { get; private set; }
 
-        public FailedCallException() {
-        }
+        public FailedCallException() { }
 
-        public FailedCallException(ResponseBase ZulipServerResponse) {
+        public FailedCallException(ResponseBase ZulipServerResponse)
+        {
             this.ZulipServerResponse = ZulipServerResponse;
-            this.Message = $"The API call returned with an error.\r\nAPI Returned: {ZulipServerResponse?.Result} = {ZulipServerResponse?.Msg}";
+
+            this.Message = $"The API call returned with an error.\r\nAPI Returned: " +
+                           $"{ZulipServerResponse?.Result} = {ZulipServerResponse?.Message}";
         }
 
-        public FailedCallException(string message) : base(message) {
-        }
+        public FailedCallException(string message) : base(message) { }
 
-        public FailedCallException(string message, Exception innerException) : base(message, innerException) {
-        }
+        public FailedCallException(string message, Exception innerException) : base(message, innerException) { }
 
-        protected FailedCallException(SerializationInfo info, StreamingContext context) : base(info, context) {
-        }
+        protected FailedCallException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

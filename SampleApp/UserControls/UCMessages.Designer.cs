@@ -30,6 +30,12 @@ namespace SampleApp.UserControls {
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtResponse = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.numBefore = new System.Windows.Forms.NumericUpDown();
+            this.numAfter = new System.Windows.Forms.NumericUpDown();
+            this.numAnchor = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnGet = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -54,23 +60,17 @@ namespace SampleApp.UserControls {
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.numAnchor = new System.Windows.Forms.NumericUpDown();
-            this.numBefore = new System.Windows.Forms.NumericUpDown();
-            this.numAfter = new System.Windows.Forms.NumericUpDown();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMessages)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numBefore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAfter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAnchor)).BeginInit();
             this.panel_Send.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel_PMSend.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numAnchor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numBefore)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAfter)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -138,6 +138,84 @@ namespace SampleApp.UserControls {
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(298, 57);
             this.panel2.TabIndex = 4;
+            // 
+            // numBefore
+            // 
+            this.numBefore.Location = new System.Drawing.Point(230, 3);
+            this.numBefore.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.numBefore.Name = "numBefore";
+            this.numBefore.Size = new System.Drawing.Size(62, 20);
+            this.numBefore.TabIndex = 3;
+            this.numBefore.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            // 
+            // numAfter
+            // 
+            this.numAfter.Location = new System.Drawing.Point(230, 29);
+            this.numAfter.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.numAfter.Name = "numAfter";
+            this.numAfter.Size = new System.Drawing.Size(62, 20);
+            this.numAfter.TabIndex = 3;
+            this.numAfter.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numAnchor
+            // 
+            this.numAnchor.Location = new System.Drawing.Point(95, 3);
+            this.numAnchor.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.numAnchor.Name = "numAnchor";
+            this.numAnchor.Size = new System.Drawing.Size(76, 20);
+            this.numAnchor.TabIndex = 3;
+            this.numAnchor.Value = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(186, 31);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "After";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(186, 5);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Before";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(48, 5);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Anchor";
             // 
             // label4
             // 
@@ -362,84 +440,6 @@ namespace SampleApp.UserControls {
             this.label1.TabIndex = 0;
             this.label1.Text = "Private Message";
             // 
-            // numAnchor
-            // 
-            this.numAnchor.Location = new System.Drawing.Point(95, 3);
-            this.numAnchor.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.numAnchor.Name = "numAnchor";
-            this.numAnchor.Size = new System.Drawing.Size(76, 20);
-            this.numAnchor.TabIndex = 3;
-            this.numAnchor.Value = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            // 
-            // numBefore
-            // 
-            this.numBefore.Location = new System.Drawing.Point(230, 3);
-            this.numBefore.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.numBefore.Name = "numBefore";
-            this.numBefore.Size = new System.Drawing.Size(62, 20);
-            this.numBefore.TabIndex = 3;
-            this.numBefore.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            // 
-            // numAfter
-            // 
-            this.numAfter.Location = new System.Drawing.Point(230, 29);
-            this.numAfter.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.numAfter.Name = "numAfter";
-            this.numAfter.Size = new System.Drawing.Size(62, 20);
-            this.numAfter.TabIndex = 3;
-            this.numAfter.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(48, 5);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(41, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Anchor";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(186, 5);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Before";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(186, 31);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "After";
-            // 
             // UCMessages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -454,15 +454,15 @@ namespace SampleApp.UserControls {
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numBefore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAfter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAnchor)).EndInit();
             this.panel_Send.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel_PMSend.ResumeLayout(false);
             this.panel_PMSend.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numAnchor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numBefore)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAfter)).EndInit();
             this.ResumeLayout(false);
 
         }

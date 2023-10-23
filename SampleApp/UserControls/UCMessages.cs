@@ -6,14 +6,17 @@ using ZulipAPI.Messages;
 using ZulipAPI.Streams;
 using ZulipAPI.Users;
 
-namespace SampleApp.UserControls {
-    public partial class UCMessages : UserControl {
+namespace SampleApp.UserControls
+{
+    public partial class UCMessages : UserControl
+    {
 
         private MessageEndPoint msgEndPoint;
         private UserEndPoint userEndPoint;
         private StreamEndPoint streamEndPoint;
 
-        public UCMessages() {
+        public UCMessages()
+        {
             InitializeComponent();
             InitControls();
             AddHandlers();
@@ -21,48 +24,68 @@ namespace SampleApp.UserControls {
             btnGet.Click += btnGet_Click;
         }
 
-        private void AddHandlers() {
+        private void AddHandlers()
+        {
             lnkFillCombos.LinkClicked += new LinkLabelLinkClickedEventHandler(lnkFillCombos_LinkClicked);
             btnSendToPrivate.Click += BtnSendToPrivate_Click;
             btnSendToStream.Click += BtnSendToStream_Click;
             dgvMessages.DataError += DgvMessages_DataError;
         }
 
-        private void DgvMessages_DataError(object sender, DataGridViewDataErrorEventArgs e) {
+        private void DgvMessages_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
             e.Cancel = true;
         }
 
-        private async void BtnSendToStream_Click(object sender, EventArgs e) {
-            if (cboStreams.SelectedValue != null && txtStreamMsg.Text != "" && txtStreamTopic.Text != "") {
-                try {
+        private async void BtnSendToStream_Click(object sender, EventArgs e)
+        {
+            if (cboStreams.SelectedValue != null && txtStreamMsg.Text != "" && txtStreamTopic.Text != "")
+            {
+                try
+                {
                     await msgEndPoint.SendStreamMessage(cboStreams.SelectedValue.ToString(), txtStreamTopic.Text, txtStreamMsg.Text);
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     MessageBox.Show(ex.ToString());
                 }
             }
         }
 
-        private async void BtnSendToPrivate_Click(object sender, EventArgs e) {
-            if (cboUsers.SelectedValue != null && txtPrivateMsg.Text != "") {
-                try {
+        private async void BtnSendToPrivate_Click(object sender, EventArgs e)
+        {
+            if (cboUsers.SelectedValue != null && txtPrivateMsg.Text != "")
+            {
+                try
+                {
                     await msgEndPoint.SendPrivateMessage(cboUsers.SelectedValue.ToString(), txtPrivateMsg.Text);
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     MessageBox.Show(ex.ToString());
                 }
-            } else { return; }
+            }
+            else { return; }
         }
 
-        private async void btnGet_Click(object sender, System.EventArgs e) {
+        private async void btnGet_Click(object sender, System.EventArgs e)
+        {
             await Program.GetZulipClient();
-            try {
+            try
+            {
                 var msgs = await msgEndPoint.GetMessages((ulong)numAnchor.Value, (int)numBefore.Value, (int)numAfter.Value);
                 dgvMessages.DataSource = msgs;
-            } catch (System.Exception ex) {
+            }
+            catch (System.Exception ex)
+            {
                 MessageBox.Show(ex.ToString());
             }
         }
 
-        private void InitControls() {
+        private void InitControls()
+        {
+            var test =Program.client.GetMessageEndPoint();
+
             msgEndPoint = msgEndPoint ?? Program.client.GetMessageEndPoint();
             userEndPoint = userEndPoint ?? Program.client.GetUserEndPoint();
             streamEndPoint = streamEndPoint ?? Program.client.GetStreamEndPoint();
@@ -78,9 +101,11 @@ namespace SampleApp.UserControls {
             toolTip1.SetToolTip(this.numAfter, "Only useful if you set Anchor to an actcual message id and then get messages after that point,\r\nie. going back to an old topic's first message, then using this to get messages after that.");
         }
 
-        private async void lnkFillCombos_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        private async void lnkFillCombos_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
             await Program.GetZulipClient();
-            try {
+            try
+            {
 
                 IList<User> users = await userEndPoint.GetUsers();
                 cboUsers.DisplayMember = nameof(User.FullName);
@@ -93,7 +118,9 @@ namespace SampleApp.UserControls {
                 cboStreams.ValueMember = nameof(Stream.Name);
                 cboStreams.DataSource = streams;
 
-            } catch (System.Exception ex) {
+            }
+            catch (System.Exception ex)
+            {
                 MessageBox.Show(ex.ToString());
             }
         }

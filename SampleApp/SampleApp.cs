@@ -96,8 +96,13 @@ namespace SampleApp {
             if (Program.client != null) {
                 txtZulipServerURL.Text = Program.client.ServerApiURL;
                 txtUsername.Text = Program.client.UserEmail;
-                txtApiKey.Text = Program.client.APIKey;
+                txtApiKey.Text = Program.client.ApiKey;
             }
+        }
+
+        private void txtZulipServerURL_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -3,52 +3,47 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ZulipAPI.Streams {
+namespace ZulipAPI.Streams
+{
 
-    public class StreamCollection : CollectionBase, IEnumerable, IEnumerator {
-
+    public class StreamCollection : CollectionBase, IEnumerable, IEnumerator
+    {
         private int index = -1;
 
-        public StreamCollection() {
-            this.index = -1;
-        }
+        public StreamCollection()
+            => this.index = -1;
 
-        public void Add(Stream stream) {
-            if (stream != null) {
+        public void Add(Stream stream)
+        {
+            if (stream != null)
                 this.List.Add(stream);
-            }
         }
 
-        public void AddRange(IEnumerable<Stream> streams) {
-            if (streams != null) {
-                foreach (var stream in streams) {
+        public void AddRange(IEnumerable<Stream> streams)
+        {
+            if (streams != null)
+            {
+                foreach (var stream in streams)
                     this.List.Add(stream);
-                }
             }
         }
 
-        public void Remove(Stream stream) {
-            this.List.Remove(stream);
-        }
+        public void Remove(Stream stream)
+           => this.List.Remove(stream);
 
-        IEnumerator IEnumerable.GetEnumerator() {
-            return this;
-        }
+        IEnumerator IEnumerable.GetEnumerator()
+            => this;
 
-        public object Current {
-            get {
-                return this.List[index];
-            }
-        }
+        public object Current => this.List[index];
 
-        public bool MoveNext() {
+        public bool MoveNext()
+        {
             this.index++;
+
             return (this.index < this.List.Count);
         }
 
-        public void Reset() {
-            this.index = -1;
-        }
-
+        public void Reset()
+            => this.index = -1;
     }
 }

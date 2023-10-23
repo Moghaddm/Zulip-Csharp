@@ -2,17 +2,21 @@ using System;
 using System.Net.Http;
 using System.Text;
 
-namespace ZulipAPI {
+namespace ZulipAPI
+{
 
-    public class ZulipAuthentication {
+    public class ZulipAuthentication
+    {
 
         public string UserEmail { get; }
         public string Password { get; }
 
         private string _apiKey;
-        public string ApiKey {
+        public string ApiKey
+        {
             get => _apiKey;
-            set {
+            set
+            {
                 _apiKey = value;
                 _Base64Authorisation = GetAuthorisationString(UserEmail, _apiKey);
             }
@@ -29,27 +33,30 @@ namespace ZulipAPI {
         /// <param name="UserEmail"></param>
         /// <param name="UserSecret">by default the api key but optionally the user password</param>
         /// <param name="UserSecretIsPassword"></param>
-        public ZulipAuthentication(string UserEmail, string UserSecret, bool UserSecretIsPassword = false) {
+        public ZulipAuthentication(string UserEmail, string UserSecret, bool UserSecretIsPassword = false)
+        {
             this.UserEmail = UserEmail;
             this.UserSecretIsPassword = UserSecretIsPassword;
-            if (UserSecretIsPassword) {
+
+            if (UserSecretIsPassword)
                 this.Password = UserSecret;
-            } else {
+            else
                 this.ApiKey = UserSecret;
-            }
+
             _Base64Authorisation = GetAuthorisationString(UserEmail, UserSecret);
         }
 
-        private string GetAuthorisationString(string Username, string ApiKey) {
-            return $"{Username}:{ApiKey}".ToUTF8Base64();
-        }
+        private string GetAuthorisationString(string Username, string ApiKey)
+            => $"{Username}:{ApiKey}".ToUTF8Base64();
 
         /// <summary>
         /// Requires valid credentials (username, apikey) pasted in the contructor. Set the AuthenticationHeaderValue of the HttpClient.
         /// </summary>
         /// <param name="HttpClient"></param>
-        public void SetAuthHeader(HttpClient HttpClient) {
-            HttpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", _Base64Authorisation);
+        public void SetAuthHeader(HttpClient HttpClient)
+        {
+            HttpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers
+                .AuthenticationHeaderValue("Basic", _Base64Authorisation);
         }
     }
 }

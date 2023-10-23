@@ -1,20 +1,18 @@
 using System;
 
-namespace ZulipAPI {
+namespace ZulipAPI
+{
 
     [Serializable]
-    internal class InvalidZulipRCFileException : Exception {
+    internal class InvalidZulipRCFileException : Exception
+    {
 
-        public InvalidZulipRCFileException() : base() {
-        }
+        public InvalidZulipRCFileException() : base() { }
 
-        public InvalidZulipRCFileException(string message) : base(message) {
-        }
+        public InvalidZulipRCFileException(string message) : base(message) { }
 
-        public InvalidZulipRCFileException(string message, Exception innerException) : base(message, innerException) {
-        }
+        public InvalidZulipRCFileException(string message, Exception innerException) : base(message, innerException) { }
 
-        protected InvalidZulipRCFileException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context) {
-        }
+        protected InvalidZulipRCFileException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context) {}
     }
 }

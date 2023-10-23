@@ -1,8 +1,9 @@
 using Newtonsoft.Json;
 
-namespace ZulipAPI.Messages {
-    public class DisplayRecipient {
-
+namespace ZulipAPI.Messages
+{
+    public class DisplayRecipient
+    {
         [JsonProperty("email")]
         public string Email { get; set; }
         [JsonProperty("short_name")]
@@ -20,10 +21,11 @@ namespace ZulipAPI.Messages {
         [JsonIgnore]
         public bool IsPrivateRecipient => Email != null;
 
-        public override string ToString() {
-            if (IsStreamRecipient) {
+        public override string ToString()
+        {
+            if (IsStreamRecipient)
                 return StreamName;
-            }
+
             return $"{FullName} {ID}";
         }
     }

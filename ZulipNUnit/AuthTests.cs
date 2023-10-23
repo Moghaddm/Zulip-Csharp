@@ -18,7 +18,7 @@ namespace ZulipNUnit {
             var apiKey = "";
             if (File.Exists(zuliprc)) {
                 var zulipClient = ZulipServer.Login(zuliprc);
-                apiKey = zulipClient.APIKey;
+                apiKey = zulipClient.ApiKey;
             }
             Assert.IsTrue(!string.IsNullOrEmpty(apiKey));
         }
@@ -41,7 +41,7 @@ namespace ZulipNUnit {
 
             var client = await new ZulipServer(serverURL).LoginAsync(email, passwordFromFile);
 
-            Assert.IsTrue(!string.IsNullOrEmpty(client.APIKey));
+            Assert.IsTrue(!string.IsNullOrEmpty(client.ApiKey));
         }
 
         [TestCase("https://chat.zulip.org", "", "")]

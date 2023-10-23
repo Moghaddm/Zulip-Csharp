@@ -3,10 +3,11 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace ZulipAPI {
+namespace ZulipAPI
+{
 
-    public class ZulipServer {
-
+    public class ZulipServer
+    {
         public string ServerBaseURL { get; }
         public ServerApiVersion ApiVersion { get; } = ZulipServer.ServerApiVersion.v1;
         internal const string ApiPathV1 = "/api/v1";
@@ -18,10 +19,12 @@ namespace ZulipAPI {
         /// </summary>
         /// <param name="ServerBaseURL"></param>
         /// <param name="ApiVersion">Optional parameter in case there are v2 or higher in the future.</param>
-        public ZulipServer(string ServerBaseURL, ServerApiVersion ApiVersion = ServerApiVersion.v1) {
+        public ZulipServer(string ServerBaseURL, ServerApiVersion ApiVersion = ServerApiVersion.v1)
+        {
             this.ServerBaseURL = TidyUpURL(ServerBaseURL);
 
-            switch (ApiVersion) {
+            switch (ApiVersion)
+            {
                 case ServerApiVersion.v1:
                     this.ServerApiURL = this.ServerBaseURL + ApiPathV1;
                     break;
@@ -31,10 +34,12 @@ namespace ZulipAPI {
             this.BaseAddress = new Uri(this.ServerBaseURL);
         }
 
-        public async Task<ZulipClient> LoginAsync(string userEmail, string password) {
+        public async Task<ZulipClient> LoginAsync(string userEmail, string password)
+        {
             var RestClient = new RestClient(ServerApiURL);
             var apiKey = "";
-            if (!string.IsNullOrEmpty(userEmail) && !string.IsNullOrEmpty(password)) {
+            if (!string.IsNullOrEmpty(userEmail) && !string.IsNullOrEmpty(password))
+            {
                 var request = new RestRequest("fetch_api_key", Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddParameter("username", userEmail);
@@ -42,21 +47,26 @@ namespace ZulipAPI {
                 IRestResponse<FetchApiKeyResult> response = await RestClient.ExecutePostTaskAsync<FetchApiKeyResult>(request);
                 apiKey = response.Data?.ApiKey;
             }
-            return new ZulipClient(userEmail, apiKey) {
+            return new ZulipClient(userEmail, apiKey)
+            {
                 ServerApiURL = ServerApiURL,
             };
         }
 
-        public static ZulipClient Login(string pathZulipRCFile) {
+        public static ZulipClient Login(string pathZulipRCFile)
+        {
             var zrc = new ZulipRCAuth(pathZulipRCFile);
 
-            return new ZulipClient(zrc.Username, zrc.UserSecret) {
+            return new ZulipClient(zrc.Username, zrc.UserSecret)
+            {
                 ServerApiURL = new ZulipServer(zrc.ServerURL).ServerApiURL,
             };
         }
 
-        public ZulipClient Login(string userEmail, string apiKey) {
-            return new ZulipClient(userEmail, apiKey) {
+        public ZulipClient Login(string userEmail, string apiKey)
+        {
+            return new ZulipClient(userEmail, apiKey)
+            {
                 ServerApiURL = ServerApiURL,
             };
         }
@@ -66,7 +76,8 @@ namespace ZulipAPI {
         /// </summary>
         /// <param name="ServerURL"></param>
         /// <returns></returns>
-        private string TidyUpURL(string ServerURL) {
+        private string TidyUpURL(string ServerURL)
+        {
             string Result = ServerURL.StartsWith("https://") ? ServerURL : "https://" + ServerURL;
             Result = Result.EndsWith("/") ? Result.Remove(Result.LastIndexOf('/')) : Result;
 
@@ -74,7 +85,8 @@ namespace ZulipAPI {
         }
 
         // can be removed again if another API version is years away
-        public enum ServerApiVersion {
+        public enum ServerApiVersion
+        {
             v1
         }
     }
